@@ -1,0 +1,137 @@
+{
+    "html": {
+        "type": "block"
+    },
+    "head": {
+        "type": "block"
+    },
+    "body": {
+        "type": "block"
+    },
+    "title": {
+        "type": "inline"
+    },
+    "meta": {
+        "type": "self-closing"
+    },
+    "link": {
+        "type": "self-closing"
+    },
+    "style": {
+        "type": "block"
+    },
+    "script": {
+        "type": "block"
+    },
+    "header": {
+        "type": "block"
+    },
+    "footer": {
+        "type": "block"
+    },
+    "div": {
+        "type": "block"
+    },
+    "section": {
+        "type": "block"
+    },
+    "article": {
+        "type": "block"
+    },
+    "nav": {
+        "type": "block"
+    },
+    "aside": {
+        "type": "block"
+    },
+    "h1": {
+        "type": "block"
+    },
+    "h2": {
+        "type": "block"
+    },
+    "h3": {
+        "type": "block"
+    },
+    "h4": {
+        "type": "block"
+    },
+    "h5": {
+        "type": "block"
+    },
+    "h6": {
+        "type": "block"
+    },
+    "p": {
+        "type": "block"
+    },
+    "span": {
+        "type": "inline"
+    },
+    "strong": {
+        "type": "inline"
+    },
+    "em": {
+        "type": "inline"
+    },
+    "a": {
+        "type": "inline"
+    },
+    "ul": {
+        "type": "block"
+    },
+    "ol": {
+        "type": "block"
+    },
+    "li": {
+        "type": "block"
+    },
+    "img": {
+        "type": "self-closing"
+    },
+    "input": {
+        "type": "self-closing"
+    },
+    "textarea": {
+        "type": "block"
+    },
+    "button": {
+        "type": "block"
+    },
+    "select": {
+        "type": "block"
+    },
+    "option": {
+        "type": "inline"
+    },
+    "form": {
+        "type": "block"
+    },
+    "label": {
+        "type": "inline"
+    },
+    "table": {
+        "type": "block"
+    },
+    "thead": {
+        "type": "block"
+    },
+    "tbody": {
+        "type": "block"
+    },
+    "tr": {
+        "type": "block"
+    },
+    "th": {
+        "type": "block"
+    },
+    "td": {
+        "type": "block"
+    },
+    "hr": {
+        "type": "self-closing"
+    },
+    "br": {
+        "type": "self-closing"
+    }
+}

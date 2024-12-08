@@ -1,26 +1,35 @@
 export interface Token {
     command: string;
     args: string;
-    indentLevel: number
+    indentLevel: number,
+    attrs?: Record<string, string>
 }
 
-export function tokenize(input: string): Token[]{
-    const lines = input.split('\n').filter(line=> line.trim() !== "");
-    let previousIndentLevel = 0;
+export function tokenize(input: string): Token[] {
+    const lines = input.split('\n')
+    const tokens: Token[] = []
 
-    const tokens = lines.map(line=> {
-        const indentLevel = line.search(/\S|$/) / 4
-        const [command, ...args] = line.trim().split(' ')
-        
-        if(indentLevel < previousIndentLevel){
-            throw new Error(`Invalid indentation on line ${indentLevel+1}: Indentation decreased`)
-        }
-previousIndentLevel = indentLevel
-        return {
-            command,
-            args: args.join(' '),
-            indentLevel
+    lines.forEach((line) => {
+        const match = line.match(/^(\s*)(@\w+)(\((.*?)\))?(.*)$/);
+        if (match) {
+            const indentLevel = match[1].length;
+            const command = match[2].substring(1); // Strip '@'
+            const attributesRaw = match[4]?.trim() || '';
+            const args = match[5]?.trim() || '';
+
+            // Parse attributes
+            const attrs: Record<string, string> = {};
+            if (attributesRaw) {
+                attributesRaw.split(',').forEach((attr) => {
+                    const [key, val] = attr.split('=').map((part) => part.trim());
+                    if (key && val) {
+                        attrs[key] = val.replace(/^['"]|['"]$/g, ''); // Strip quotes
+                    }
+                });
+            }
+
+            tokens.push({ command, args, indentLevel, attrs })
         }
     })
-    return tokens
+    return tokens;
 }

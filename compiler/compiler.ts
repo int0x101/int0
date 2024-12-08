@@ -1,13 +1,25 @@
-// compiler/compiler.ts
-import fs from "fs";
-import path from "path";
-import { tokenize } from "../lexur/lexer";
-import { parse } from "../parser/parser";
+import { ASTNode } from '../parser/parser';
+import * as fs from 'fs';
+import * as path from 'path';
 
-export function compile(inputFile: string, outputFile: string): void {
-  const input = fs.readFileSync(path.resolve(inputFile), "utf-8");
-  const tokens = tokenize(input);
-  const html = parse(tokens);
-  fs.writeFileSync(path.resolve(outputFile), html, "utf-8");
-  console.log("Compilation successful!");
+const rulesPath = path.resolve(__dirname, './rules.json');
+const rules = JSON.parse(fs.readFileSync(rulesPath, 'utf-8'));
+
+export function compile(ast: ASTNode): string {
+  function visit(node: ASTNode): string {
+    const rule = rules[node.command];
+
+    if (!rule) {
+      throw new Error(`Unknown tag: ${node.command}`);
+    }
+
+    if (rule.type === 'self-closing') {
+      return `<${node.command} />`;
+    }
+
+    const childrenHtml = node.children.map(visit).join('');
+    return `<${node.command}>${node.args || ''}${childrenHtml}</${node.command}>`;
+  }
+
+  return visit(ast);
 }
